@@ -27,13 +27,13 @@ public class HealthBar : MonoBehaviour
     {
         startingPosition = healthBar.transform.localPosition;
         startingScale = healthBar.transform.localScale;
-        UpdateLives();
         healthScript = FindObjectOfType<Health>();
-        Health.OnHealthChange.AddListener(UpdateLives);
+        Health.OnHealthChanged.AddListener(UpdateHealthBar);
+        UpdateHealthBar();
     }
       
     // Function that updates health bar and text
-    void UpdateLives()
+    void UpdateHealthBar()
     {
         float scaleScaler = (float)healthScript.currentHealth / healthScript.maxHealth;
         float newXScale = startingScale.x * scaleScaler;

@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
 {
     [Tooltip("The scene that is loaded when the player dies")]
     public string nextSceneName;
+    [Tooltip("The starting amount of health")]
+    public int startingHealth = 10;
     [Tooltip("The amount of the time play will be invincible after getting hit")]
     public float invincibilityFramesTime = 0.5f;
     [Tooltip("The amount of the time before regenerating health")]
@@ -28,28 +30,21 @@ public class Health : MonoBehaviour
 
     [HideInInspector]
     public bool healing = false;
-
-    public int startingHealth = 10;
-
+    //[HideInInspector]
     public int maxHealth;
+    //[HideInInspector]
     public int currentHealth;
+
+    public static UnityEvent OnHealthChanged = new UnityEvent();
 
     private float invincibilityFramesTimer = 0;
     private float regenTimer = 0f;
-
-    public static UnityEvent OnHealthChanged = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
     {
         maxHealth = startingHealth * (GameManager.Loop + 1); // + Items.MaxHealth;
         currentHealth = maxHealth;
-    }
-
-    public void SwapHealing(bool isHealing)
-    {
-        healing = isHealing;
-        regenTimer = 0f;
     }
 
     // Update is called once per frame
@@ -65,6 +60,13 @@ public class Health : MonoBehaviour
             }
         }
         invincibilityFramesTimer += Time.deltaTime;
+    }
+
+    // Swap if healing or not
+    public void SwapHealing(bool isHealing)
+    {
+        healing = isHealing;
+        regenTimer = 0f;
     }
 
     // Changes the current health by value
@@ -86,6 +88,10 @@ public class Health : MonoBehaviour
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
+        }
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
         }
 
         if (currentHealth <= 0)
