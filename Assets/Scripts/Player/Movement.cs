@@ -26,14 +26,10 @@ public class Movement : MonoBehaviour
     private KeyCode upKey = KeyCode.W;
     private KeyCode downKey = KeyCode.S;
 
-    private Vector2 lastPosition;
-
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-
-        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -59,15 +55,9 @@ public class Movement : MonoBehaviour
         playerRB.velocity = newVelocity;
         playerRB.velocity = Vector2.ClampMagnitude(playerRB.velocity, maxSpeed);
 
-        Vector2 currentPosition = transform.position;
-        Vector2 deltaPosition = currentPosition - lastPosition;
-        if (deltaPosition != Vector2.zero)
-        {
-            Vector2 lookDirection = (deltaPosition).normalized;
-            float angle = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
-        }
-        lastPosition = currentPosition;
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        float newAngle = Mathf.Lerp(angle, transform.rotation.eulerAngles.y, 0.1f);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -newAngle));
     }
 
     // Find the most recent key pushed or currently pushed
