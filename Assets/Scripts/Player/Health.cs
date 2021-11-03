@@ -20,8 +20,11 @@ public class Health : MonoBehaviour
     public int currentHealth = 10;
     [Tooltip("The scene that is loaded when the player dies")]
     public string nextSceneName;
+    [Tooltip("The amount of the time play will be invincible after getting hit")]
+    public float invincibilityFramesTime = 0.5f;
 
     private int maxHealth;
+    private float invincibilityFramesTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +35,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth <= 0)
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
+        invincibilityFramesTimer -= Time.deltaTime;
     }
 
     // Increase the current health
@@ -51,6 +51,20 @@ public class Health : MonoBehaviour
     //  amount: the amount the current health will decrease
     public void DecreaseHealth(int amount)
     {
-        currentHealth -= amount;
+        if (invincibilityFramesTimer <= 0)
+        {
+            currentHealth -= amount;
+            invincibilityFramesTimer = invincibilityFramesTime;
+        }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 }

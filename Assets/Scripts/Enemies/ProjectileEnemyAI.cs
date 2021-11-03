@@ -16,7 +16,7 @@ using UnityEngine;
 public class ProjectileEnemyAI : MonoBehaviour
 {
     [Tooltip("The health of the enemy")]
-    public float currentHealth = 1;
+    public int currentHealth = 1;
     [Tooltip("The move speed of the enemy")]
     public float moveSpeed = 2;
     [Tooltip("How fast the enemy slows down")]
@@ -31,10 +31,10 @@ public class ProjectileEnemyAI : MonoBehaviour
     public float projectileSpeed = 4;
     [Tooltip("The time it takes to shoot a projectile")]
     public float shootTime = 0.25f;
-    [Tooltip("The time before the projectile can be shot again")]
-    public float shootCooldownTime = 0.5f;
     [Tooltip("The prefab of an object that will be the projectile")]
     public GameObject projectilePrefab;
+    [Tooltip("The distance away from the center of the object the projectile will be summoned")]
+    public float prefabDistanceFromCenter = 0.6f;
     [Tooltip("The pushback force")]
     public float pushForce = 4f;
 
@@ -76,7 +76,7 @@ public class ProjectileEnemyAI : MonoBehaviour
                     direction = direction.normalized;
                     enemyRB.velocity = -direction * moveSpeed;
                 }
-                if (direction.magnitude <= maxShootingRange)
+                else if (direction.magnitude <= maxShootingRange)
                 {
                     Invoke("ShootProjectile", shootTime);
                     shooting = true;
@@ -118,11 +118,14 @@ public class ProjectileEnemyAI : MonoBehaviour
     private void ShootProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
         float projectileRotation;
         direction = (target.transform.position - transform.position).normalized;
         projectileRotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -projectileRotation));
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * projectileSpeed;
+
+        projectile.transform.position = projectile.transform.position + (Vector3)direction * prefabDistanceFromCenter;
 
         shooting = false;
     }

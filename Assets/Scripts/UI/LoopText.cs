@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	GameManager.cs
+// File Name:	LoopText.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
@@ -12,20 +12,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class GameManager : MonoBehaviour
+public class LoopText : MonoBehaviour
 {
-    private static int loop = 0;
-
-    public static int Loop
+    // Start is called before the first frame update
+    void Start()
     {
-        get
-        {
-            return loop;
-        }
-        set
-        {
-            loop = value;
-        }
+        GetComponent<TextMeshProUGUI>().text = "Loop: " + GameManager.Loop;
     }
 }

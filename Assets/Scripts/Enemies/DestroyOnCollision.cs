@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	GameManager.cs
+// File Name:	DestroyOnCollision.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
@@ -13,19 +13,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class DestroyOnCollision : MonoBehaviour
 {
-    private static int loop = 0;
-
-    public static int Loop
+    // Destroy gameObject on collision
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        get
-        {
-            return loop;
-        }
-        set
-        {
-            loop = value;
-        }
+        Destroy(gameObject);
     }
 }

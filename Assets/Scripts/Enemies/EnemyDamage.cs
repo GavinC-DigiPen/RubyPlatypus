@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	GameManager.cs
+// File Name:	EnemyDamage.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
@@ -13,19 +13,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class EnemyDamage : MonoBehaviour
 {
-    private static int loop = 0;
+    [Tooltip("The amount of damage the gameObject will do")]
+    public int damage = 1;
 
-    public static int Loop
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        get
+        if (collision.gameObject.CompareTag("Player"))
         {
-            return loop;
-        }
-        set
-        {
-            loop = value;
+            collision.gameObject.GetComponent<Health>().DecreaseHealth(damage);
         }
     }
 }
