@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Timer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float switchTime = 15f;
+    private float timer = 0f;
+    public Color healColor;
+    public Color attackColor;
+    private bool isOnHealMode = true;
+    public TilemapRenderer levelRenderer;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if(timer > switchTime)
+        {
+            timer -= switchTime;
+            isOnHealMode = !isOnHealMode;
+            levelRenderer.material.color = isOnHealMode ? healColor : attackColor;
+            FindObjectOfType<Sword>().attacking = !isOnHealMode;
+        }
     }
 }

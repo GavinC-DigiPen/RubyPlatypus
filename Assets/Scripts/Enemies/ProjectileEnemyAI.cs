@@ -16,7 +16,7 @@ using UnityEngine;
 public class ProjectileEnemyAI : MonoBehaviour
 {
     [Tooltip("The health of the enemy")]
-    public float health = 1;
+    public float currentHealth = 1;
     [Tooltip("The move speed of the enemy")]
     public float moveSpeed = 2;
     [Tooltip("How fast the enemy slows down")]
@@ -35,72 +35,92 @@ public class ProjectileEnemyAI : MonoBehaviour
     public float shootCooldownTime = 0.5f;
     [Tooltip("The prefab of an object that will be the projectile")]
     public GameObject projectilePrefab;
+    [Tooltip("The pushback force")]
+    public float pushForce = 4f;
 
     private Rigidbody2D enemyRB;
-    private SpriteRenderer enemySR;
     private GameObject target;
-    private Vector2 dirrection;
+    private Vector2 direction;
 
     private bool shooting = false;
-    private Color startingColor;
+
+    private bool bouncing = false;
+    private Vector2 bounceDir;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
-        enemySR = GetComponent<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player");
-
-        startingColor = enemySR.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        dirrection = target.transform.position - transform.position;
-        if (shooting == false)
+        if (bouncing)
         {
-            if (dirrection.magnitude <= minShootingRange)
+            bounceDir = Vector2.Lerp(bounceDir, new Vector2(0, 0), slowDownSpeed);
+            enemyRB.velocity = bounceDir;
+            if (bounceDir.magnitude <= 0.4f)
             {
-                dirrection = dirrection.normalized;
-                enemyRB.velocity = -dirrection * moveSpeed;
+                bouncing = false;
             }
-            if (dirrection.magnitude <= maxShootingRange)
+        }
+        else
+        {
+            direction = target.transform.position - transform.position;
+            if (shooting == false)
             {
-                Invoke("ShootProjectile", shootTime);
-                shooting = true;
-            }
-            else if (dirrection.magnitude <= detectionRange)
-            {
-                dirrection = dirrection.normalized;
-                enemyRB.velocity = dirrection * moveSpeed;
+                if (direction.magnitude <= minShootingRange)
+                {
+                    direction = direction.normalized;
+                    enemyRB.velocity = -direction * moveSpeed;
+                }
+                if (direction.magnitude <= maxShootingRange)
+                {
+                    Invoke("ShootProjectile", shootTime);
+                    shooting = true;
+                }
+                else if (direction.magnitude <= detectionRange)
+                {
+                    direction = direction.normalized;
+                    enemyRB.velocity = direction * moveSpeed;
+                }
+                else
+                {
+                    enemyRB.velocity = Vector2.Lerp(enemyRB.velocity, new Vector2(0, 0), slowDownSpeed);
+                }
             }
             else
             {
                 enemyRB.velocity = Vector2.Lerp(enemyRB.velocity, new Vector2(0, 0), slowDownSpeed);
             }
         }
-        else
-        {
-            enemyRB.velocity = Vector2.Lerp(enemyRB.velocity, new Vector2(0, 0), slowDownSpeed);
-        }
     }
 
     // Check for collision with sword
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        Sword swordScript = collision.GetComponent<Sword>();
+        if (swordScript)
+        {
+            currentHealth -= swordScript.damage;
+            bouncing = true;
+            bounceDir = (enemyRB.position - (Vector2)collision.transform.parent.position).normalized * pushForce;
+            if (currentHealth < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     // Summon the projecile, rotate it, and add force
     private void ShootProjectile()
     {
-        enemySR.color = startingColor;
-
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         float projectileRotation;
-        dirrection = (target.transform.position - transform.position).normalized;
-        projectileRotation = Mathf.Atan2(dirrection.x, dirrection.y) * Mathf.Rad2Deg;
+        direction = (target.transform.position - transform.position).normalized;
+        projectileRotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -projectileRotation));
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * projectileSpeed;
 

@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (Input.GetKey(attack))
         {
-            if (attackTime > cooldown)
+            if (sword.GetComponent<Sword>().attacking && attackTime > cooldown)
             {
                 attackTime = 0;
                 Attack();
