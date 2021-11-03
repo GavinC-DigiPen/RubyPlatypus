@@ -35,7 +35,7 @@ public class HealthBar : MonoBehaviour
     // Function that updates health bar and text
     void UpdateLives()
     {
-        float scaleScaler = (float)healthScript.currenthealth / healthScript.maxHealth;
+        float scaleScaler = (float)healthScript.currentHealth / healthScript.maxHealth;
         float newXScale = startingScale.x * scaleScaler;
 
         healthBar.transform.localScale = new Vector2(newXScale, startingScale.y);
