@@ -22,7 +22,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Health>().DecreaseHealth(damage);
+            collision.gameObject.GetComponent<Health>().ChangeHealth(-damage);
         }
     }
 }

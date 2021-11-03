@@ -15,12 +15,13 @@ public class Timer : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > switchTime)
+        if(timer >= switchTime)
         {
             timer -= switchTime;
             isOnHealMode = !isOnHealMode;
             levelRenderer.material.color = isOnHealMode ? healColor : attackColor;
             FindObjectOfType<Sword>().attacking = !isOnHealMode;
+            FindObjectOfType<Health>().SwapHealing(isOnHealMode);
         }
     }
 }
