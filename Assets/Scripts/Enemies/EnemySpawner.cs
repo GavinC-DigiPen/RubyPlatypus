@@ -1,3 +1,14 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	EnemySpawner.cs
+// Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
+// Project:	    RubyPlatypus 
+// Course:	    WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int j = 0; j < numEnemies[i]; j++)
                 {
-                    spawnLocation.x = Random.Range(transform.position.x + topLeft.x, transform.position.x + bottomRight.x);
-                    spawnLocation.y = Random.Range(transform.position.y + bottomRight.y, transform.position.y + topLeft.y);
+                    spawnLocation.x = Random.Range(topLeft.x, bottomRight.x);
+                    spawnLocation.y = Random.Range(bottomRight.y, topLeft.y);
                     Instantiate(enemies[i], spawnLocation, Quaternion.identity);
                 }
             }
