@@ -35,6 +35,8 @@ public class ProjectileEnemyAI : MonoBehaviour
     public float shootTime = 0.25f;
     [Tooltip("The prefab of an object that will be the projectile")]
     public GameObject projectilePrefab;
+    [Tooltip("The shoot sound")]
+    public AudioClip shootSound;
     [Tooltip("The distance away from the center of the object the projectile will be summoned")]
     public float prefabDistanceFromCenter = 0.6f;
     [Tooltip("The pushback force")]

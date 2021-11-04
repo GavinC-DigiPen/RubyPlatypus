@@ -40,6 +40,6 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.LogError("Length of enemies and numEnemies is different");
         }
-        Destroy(gameObject);   
+        Destroy(this);   
     }
 }
