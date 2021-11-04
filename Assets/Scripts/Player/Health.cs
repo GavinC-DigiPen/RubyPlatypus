@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = startingHealth * (GameManager.Loop + 1); // + Items.MaxHealth;
+        maxHealth = (int)(startingHealth * (GameManager.Loop + 1 + GameManager.HealthModifier));
         currentHealth = maxHealth;
     }
 

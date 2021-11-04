@@ -76,7 +76,6 @@ public class MeleeEnemyAI : MonoBehaviour
         {
             currentHealth -= swordScript.damage;
             bouncing = true;
-            Debug.Log(enemyRB.position);
             bounceDir = (enemyRB.position - (Vector2)collision.transform.parent.position).normalized * pushForce;
             if(currentHealth < 0)
             {
