@@ -15,8 +15,8 @@ using UnityEngine;
 
 public class ProjectileEnemyAI : MonoBehaviour
 {
-    [Tooltip("The health of the enemy")]
-    public int currentHealth = 1;
+    [Tooltip("The starting health of the enemy")]
+    public int startingHealth = 1;
     [Tooltip("The move speed of the enemy")]
     public float moveSpeed = 2;
     [Tooltip("How fast the enemy slows down")]
@@ -40,6 +40,11 @@ public class ProjectileEnemyAI : MonoBehaviour
     [Tooltip("The pushback force")]
     public float pushForce = 4f;
 
+    //[HideInInspector]
+    public int maxHealth;
+    //[HideInInspector]
+    public int currentHealth;
+
     private Rigidbody2D enemyRB;
     private GameObject target;
     private Vector2 direction;
@@ -54,6 +59,9 @@ public class ProjectileEnemyAI : MonoBehaviour
     {
         enemyRB = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
+
+        maxHealth = startingHealth;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame

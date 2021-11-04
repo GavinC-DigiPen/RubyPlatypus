@@ -16,8 +16,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MeleeEnemyAI : MonoBehaviour
 {
-    [Tooltip("The current health of the enemy")]
-    public int currentHealth = 15;
+    [Tooltip("The starting health of the enemy")]
+    public int startingHealth = 15;
     [Tooltip("The movespeed of the enemy")]
     public float moveSpeed = 2;
     [Tooltip("How fast the enemy slows down")]
@@ -26,6 +26,11 @@ public class MeleeEnemyAI : MonoBehaviour
     public float detectionRange = 10;
     [Tooltip("The pushback force")]
     public float pushForce = 4f;
+
+    //[HideInInspector]
+    public int maxHealth;
+    //[HideInInspector]
+    public int currentHealth;
 
     private Rigidbody2D enemyRB;
     private GameObject target;
@@ -36,9 +41,12 @@ public class MeleeEnemyAI : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         enemyRB = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
+
+        maxHealth = startingHealth;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
