@@ -74,6 +74,11 @@ public class MeleeEnemyAI : MonoBehaviour
                 enemyRB.velocity = Vector2.Lerp(enemyRB.velocity, new Vector2(0, 0), slowDownSpeed);
             }
         }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     // Check for collision with sword

@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe530932605a3641be9674032c7dbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 1
+  startingHealth: 1
   moveSpeed: 2
   slowDownSpeed: 0.01
   detectionRange: 15
@@ -527,6 +527,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6236650359394096434, guid: e8107cf924c70c944bb0356663fd9fb1, type: 3}
   prefabDistanceFromCenter: 0.75
   pushForce: 4
+  maxHealth: 0
+  currentHealth: 1
 --- !u!1 &662689440
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +572,53 @@ Transform:
   - {fileID: 2046479894}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &764813648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764813650}
+  - component: {fileID: 764813649}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &764813649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764813648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64be7e99af89707489918d9397532456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topLeft: {x: -3, y: 3}
+  bottomRight: {x: 3, y: -3}
+  enemies: []
+  numEnemies: 
+--- !u!4 &764813650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764813648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &893943764
 GameObject:
@@ -858,11 +907,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3eb8cbc84dafd4d83e2da3eaeba022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 15
+  startingHealth: 15
   moveSpeed: 2
   slowDownSpeed: 0.01
   detectionRange: 10
   pushForce: 4
+  maxHealth: 0
+  currentHealth: 15
 --- !u!61 &1603131990
 BoxCollider2D:
   m_ObjectHideFlags: 0

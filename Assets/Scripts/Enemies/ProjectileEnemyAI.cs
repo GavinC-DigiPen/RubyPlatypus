@@ -81,7 +81,7 @@ public class ProjectileEnemyAI : MonoBehaviour
             direction = target.transform.position - transform.position;
             if (moving == true)
             {
-                if (direction.magnitude <= minShootingRange)
+                if (direction.magnitude < minShootingRange)
                 {
                     direction = direction.normalized;
                     enemyRB.velocity = -direction * moveSpeed;
@@ -91,7 +91,7 @@ public class ProjectileEnemyAI : MonoBehaviour
                     Invoke("StartShooting", shootPrepTime);
                     shooting = true;
                 }
-                else if (direction.magnitude <= detectionRange)
+                else if (direction.magnitude < detectionRange)
                 {
                     direction = direction.normalized;
                     enemyRB.velocity = direction * moveSpeed;
@@ -105,6 +105,11 @@ public class ProjectileEnemyAI : MonoBehaviour
             {
                 enemyRB.velocity = Vector2.Lerp(enemyRB.velocity, new Vector2(0, 0), slowDownSpeed);
             }
+        }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
     }
 
