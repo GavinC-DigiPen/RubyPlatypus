@@ -36,7 +36,7 @@ public class CameraFollow : MonoBehaviour
         transform.position = newPosition;
 
         Vector2 distance = transform.position - target.transform.position;
-        if(distance.magnitude > 3)
+        if(distance.magnitude > 4.5)
         {
             ResetPosition();
         }

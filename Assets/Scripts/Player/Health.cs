@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = (int)(startingHealth * (GameManager.Loop + 1 + GameManager.HealthModifier));
+        maxHealth = (int)((GameManager.Loop + 1) * GameManager.HealthModifier) + startingHealth;
         currentHealth = maxHealth;
     }
 
@@ -67,6 +67,12 @@ public class Health : MonoBehaviour
     {
         healing = isHealing;
         regenTimer = 0f;
+    }
+
+    // Update the max health
+    public void UpdateHealth()
+    {
+        maxHealth = (int)((GameManager.Loop + 1) * GameManager.HealthModifier) + startingHealth;
     }
 
     // Changes the current health by value
@@ -97,6 +103,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             SceneManager.LoadScene(nextSceneName);
+            GameManager.ResetStats();
         }
     }
 }

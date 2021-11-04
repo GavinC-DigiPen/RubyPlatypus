@@ -42,7 +42,7 @@ public abstract class ItemBase : MonoBehaviour
 
         if(Vector3.Distance(transform.position,playerPos) <= 0.5f)
         {
-            GameManager.items.Add(this);
+            GameManager.AddItem(this);
             PickupItem();
             Destroy(gameObject);
         }

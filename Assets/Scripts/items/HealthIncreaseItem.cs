@@ -12,6 +12,6 @@ public class HealthIncreaseItem : ItemBase
 
     protected override void PickupItem()
     {
-
+        FindObjectOfType<Health>().UpdateHealth();
     }
 }

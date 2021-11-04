@@ -2,6 +2,7 @@
 //
 // File Name:	GameManager.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
+//              Nathan Stern (nathan.stern#digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
 //
@@ -18,28 +19,28 @@ public class GameManager : MonoBehaviour
 {
     private static int loop = 0;
     public static List<ItemBase> items = new List<ItemBase>();
-    public static UnityEvent onItemAdded = new UnityEvent();
 
-    private static float healthModifier;
+    private static float healthModifier = 0;
     public static float HealthModifier
     {
         get => healthModifier;
     }
 
-    private void Start()
+    private static float speedModifier = 1;
+    public static float SpeedModifier
     {
-        DontDestroyOnLoad(this);
+        get => speedModifier;
     }
 
     public static void AddItem(ItemBase item)
     {
         items.Add(item);
         CalculateStats();
-        onItemAdded.Invoke();
     }
 
     public static void CalculateStats()
     {
+        ResetStats();
         foreach(ItemBase i in items)
         {
             switch(i.Type)
@@ -47,10 +48,19 @@ public class GameManager : MonoBehaviour
                 case ItemType.MaxHealthIncrease:
                     healthModifier += i.Value;
                     break;
+                case ItemType.SpeedIncrease:
+                    speedModifier += i.Value;
+                    break;
                 default:
                     break;
             }
         }
+    }
+
+    public static void ResetStats()
+    {
+        healthModifier = 0;
+        speedModifier = 1;
     }
 
     public static int Loop

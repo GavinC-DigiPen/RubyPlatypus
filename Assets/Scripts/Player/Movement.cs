@@ -14,7 +14,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Tooltip("The maximum speed")]
-    public float maxSpeed = 5f;
+    public float startMaxSpeed = 5f;
     [Tooltip("The acceleration")]
     public float acceleration = 0.5f;
     [Tooltip("How fast the player slows down when not moving (0 - 1)")]
@@ -26,10 +26,14 @@ public class Movement : MonoBehaviour
     private KeyCode upKey = KeyCode.W;
     private KeyCode downKey = KeyCode.S;
 
+    [SerializeField]
+    private float maxSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        maxSpeed = GameManager.SpeedModifier * startMaxSpeed;
     }
 
     // Update is called once per frame
@@ -91,5 +95,11 @@ public class Movement : MonoBehaviour
         }
 
         return direction;
+    }
+
+    // Updates the maxSpeed mid level
+    public void UpdateSpeed()
+    {
+        maxSpeed = GameManager.SpeedModifier * startMaxSpeed;
     }
 }
