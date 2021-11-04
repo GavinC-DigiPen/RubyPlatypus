@@ -16935,7 +16935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6eadeecb8d1bd4aa12e545ae2dab22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacking: 1
+  attacking: 0
   damage: 3
 --- !u!70 &1137020812
 CapsuleCollider2D:
@@ -17018,6 +17018,53 @@ Transform:
   m_Father: {fileID: 72511496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
+--- !u!1 &1186650510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186650512}
+  - component: {fileID: 1186650511}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1186650511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186650510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac690198e16694648ac5de369691f965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchTime: 10
+  healColor: {r: 1, g: 1, b: 1, a: 1}
+  attackColor: {r: 0, g: 0, b: 0, a: 1}
+  levelRenderer: {fileID: 411550933}
+--- !u!4 &1186650512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186650510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15468758, y: 0.33374512, z: -3.8494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1481213460
 GameObject:
   m_ObjectHideFlags: 0
@@ -17030,10 +17077,10 @@ GameObject:
   - component: {fileID: 1481213465}
   - component: {fileID: 1481213464}
   - component: {fileID: 1481213463}
-  - component: {fileID: 1481213462}
   - component: {fileID: 1481213461}
+  - component: {fileID: 1481213462}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17061,19 +17108,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1481213460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe530932605a3641be9674032c7dbf0, type: 3}
+  m_Script: {fileID: 11500000, guid: bf3eb8cbc84dafd4d83e2da3eaeba022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 1
+  currentHealth: 15
   moveSpeed: 2
   slowDownSpeed: 0.01
-  detectionRange: 15
-  maxShootingRange: 10
-  minShootingRange: 7
-  projectileSpeed: 4
-  shootTime: 0.25
-  projectilePrefab: {fileID: 1772417199149549310, guid: 318c3f785b0cbc94681cfd63b757e582, type: 3}
-  prefabDistanceFromCenter: 0.75
+  detectionRange: 10
   pushForce: 4
 --- !u!61 &1481213463
 BoxCollider2D:
