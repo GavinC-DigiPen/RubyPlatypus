@@ -28,6 +28,7 @@ public class LevelDoor : MonoBehaviour
             {
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
+                GameManager.Loop++;
             }
         }
     }

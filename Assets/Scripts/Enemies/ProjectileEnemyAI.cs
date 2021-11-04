@@ -29,6 +29,8 @@ public class ProjectileEnemyAI : MonoBehaviour
     public float minShootingRange = 7;
     [Tooltip("The move speed of the summoned projectile")]
     public float projectileSpeed = 4;
+    [Tooltip("The time it takes to prep a shot a projectile")]
+    public float shootPrepTime = 0.25f;
     [Tooltip("The time it takes to shoot a projectile")]
     public float shootTime = 0.25f;
     [Tooltip("The prefab of an object that will be the projectile")]
@@ -43,7 +45,7 @@ public class ProjectileEnemyAI : MonoBehaviour
     private Vector2 direction;
 
     private bool shooting = false;
-
+    private bool moving = true;
     private bool bouncing = false;
     private Vector2 bounceDir;
 
@@ -69,16 +71,16 @@ public class ProjectileEnemyAI : MonoBehaviour
         else
         {
             direction = target.transform.position - transform.position;
-            if (shooting == false)
+            if (moving == true)
             {
                 if (direction.magnitude <= minShootingRange)
                 {
                     direction = direction.normalized;
                     enemyRB.velocity = -direction * moveSpeed;
                 }
-                else if (direction.magnitude <= maxShootingRange)
+                else if (direction.magnitude <= maxShootingRange && shooting == false)
                 {
-                    Invoke("ShootProjectile", shootTime);
+                    Invoke("StartShooting", shootPrepTime);
                     shooting = true;
                 }
                 else if (direction.magnitude <= detectionRange)
@@ -114,13 +116,60 @@ public class ProjectileEnemyAI : MonoBehaviour
         }
     }
 
+    private void StartShooting()
+    {
+        Invoke("ShootProjectile", shootTime);
+        moving = false;
+    }
+
     // Summon the projecile, rotate it, and add force
     private void ShootProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
+        AOEDamageProjectile damageAOEScript = projectile.GetComponent<AOEDamageProjectile>();
+        if (damageAOEScript)
+        {
+            damageAOEScript.targetLocation = target.transform.position;
+        }
+
+        AOEHealingProjectile healingAOEScript = projectile.GetComponent<AOEHealingProjectile>();
+        if(healingAOEScript)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            int index = -1;
+            float closesDistance = detectionRange;
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if ((enemies[i].transform.position - transform.position).magnitude < closesDistance)
+                {
+                    if (enemies[i].transform.position != transform.position)
+                    {
+                        index = i;
+                        closesDistance = enemies[i].transform.position.magnitude;
+                    }
+                }
+            }
+
+            Vector2 enemyLocation;
+            if(index == -1)
+            {
+                enemyLocation = transform.position;
+            }
+            else
+            {
+                enemyLocation = enemies[index].transform.position;
+            }
+            
+            healingAOEScript.targetLocation = enemyLocation;
+            direction = (enemyLocation - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            direction = (target.transform.position - transform.position).normalized;
+        }
+
         float projectileRotation;
-        direction = (target.transform.position - transform.position).normalized;
         projectileRotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -projectileRotation));
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * projectileSpeed;
@@ -128,5 +177,6 @@ public class ProjectileEnemyAI : MonoBehaviour
         projectile.transform.position = projectile.transform.position + (Vector3)direction * prefabDistanceFromCenter;
 
         shooting = false;
+        moving = true;
     }
 }
