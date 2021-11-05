@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
 //
 // File Name:	GameManager.cs
-// Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
-//              Nathan Stern (nathan.stern#digipen.edu)
+// Author(s):	Nathan Stern (nathan.stern#digipen.edu)
+//              Gavin Cooper (gavin.cooper@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
 //
@@ -13,13 +13,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     private static int loop = 0;
+
     public static List<ItemBase> items = new List<ItemBase>();
 
+    #region ItemModifiers
     private static float healthModifier = 0;
     public static float HealthModifier
     {
@@ -65,6 +66,25 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    public static int money = 0;
+
+    public static bool SpendMoney(int amount)
+    {
+        if (money >= amount)
+        {
+            money -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public static void AddMoney(int amount)
+    {
+        money += amount;
+    }
+
 
     public static void ResetStats()
     {
