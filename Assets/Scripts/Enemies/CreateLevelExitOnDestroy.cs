@@ -17,7 +17,7 @@ public class CreateLevelExitOnDestroy : MonoBehaviour
 {
     [Tooltip("The prefab of the level exit")]
     public GameObject levelExit;
-
+   
     // Create level exit on destroy
     private void OnDestroy()
     {

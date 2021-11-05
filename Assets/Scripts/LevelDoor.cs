@@ -18,6 +18,14 @@ public class LevelDoor : MonoBehaviour
 {
     [Tooltip("The button to use the door")]
     public KeyCode transitionKey = KeyCode.E;
+    [Tooltip("The rotation rate of the portal")]
+    public float rotationRate = 100;
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(Vector3.forward, rotationRate * Time.deltaTime);
+    }
 
     // Check for play collision
     private void OnTriggerStay2D(Collider2D collision)
