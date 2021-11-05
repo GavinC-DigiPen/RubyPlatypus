@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        maxSpeed = GameManager.SpeedModifier * startMaxSpeed;
+        maxSpeed = startMaxSpeed; // * GameManager.speedModifier
     }
 
     // Update is called once per frame
@@ -100,6 +100,6 @@ public class Movement : MonoBehaviour
     // Updates the maxSpeed mid level
     public void UpdateSpeed()
     {
-        maxSpeed = GameManager.SpeedModifier * startMaxSpeed;
+        maxSpeed = startMaxSpeed; // * GameManager.speedModifier
     }
 }

@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	Sword.cs
+// File Name:	DamageItem.cs
 // Author(s):	Nathan Stern (nathan.stern@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
@@ -13,21 +13,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class DamageItem : ItemBase
 {
-    public bool attacking = false;
-    public int startDamage = 10;
-    public int damage;
-
-    private void Start()
+    public float damageIncrease = 1f;
+    protected override void Init()
     {
-        damage = startDamage;
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        InitStats(ItemType.DamageIncrease, damageIncrease);
     }
 
-    public void UpdateDamage()
+    protected override void PickupItem()
     {
-        damage = startDamage + (int)GameManager.DamageModifier;
+        FindObjectOfType<Sword>().UpdateDamage();
     }
 }

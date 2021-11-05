@@ -26,10 +26,16 @@ public class GameManager : MonoBehaviour
         get => healthModifier;
     }
 
-    private static float speedModifier = 1;
-    public static float SpeedModifier
+    private static float damageModifier = 1;
+    public static float DamageModifier
     {
-        get => speedModifier;
+        get => damageModifier;
+    }
+
+    private static float healModifier = 1;
+    public static float HealModifier
+    {
+        get => healModifier;
     }
 
     public static void AddItem(ItemBase item)
@@ -48,8 +54,11 @@ public class GameManager : MonoBehaviour
                 case ItemType.MaxHealthIncrease:
                     healthModifier += i.Value;
                     break;
-                case ItemType.SpeedIncrease:
-                    speedModifier += i.Value;
+                case ItemType.DamageIncrease:
+                    damageModifier += i.Value;
+                    break;
+                case ItemType.HealIncrease:
+                    healModifier += i.Value;
                     break;
                 default:
                     break;
@@ -60,7 +69,8 @@ public class GameManager : MonoBehaviour
     public static void ResetStats()
     {
         healthModifier = 0;
-        speedModifier = 1;
+        healModifier = 1;
+        damageModifier = 1;
     }
 
     public static int Loop

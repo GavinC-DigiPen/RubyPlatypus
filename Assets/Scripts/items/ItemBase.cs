@@ -1,3 +1,14 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	ItemBase.cs
+// Author(s):	Nathan Stern (nathan.stern@digipen.edu)
+// Project:	    RubyPlatypus
+// Course:	    WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,6 +73,8 @@ public enum ItemType
 {
     None,
     MaxHealthIncrease,
-    SpeedIncrease,
-    DamageIncrease
+    HealIncrease,
+    DamageIncrease,
+    AttackIncrease,
+    Shield
 }

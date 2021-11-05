@@ -2,6 +2,7 @@
 //
 // File Name:	Health.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
+//              Nathan Stern (nathan.stern@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
 //
@@ -62,7 +63,7 @@ public class Health : MonoBehaviour
             if (regenTimer >= regenTime)
             {
                 regenTimer -= regenTime;
-                ChangeHealth(regenAmount);
+                ChangeHealth((int)(regenAmount * GameManager.HealModifier));
             }
         }
         invincibilityFramesTimer += Time.deltaTime;
