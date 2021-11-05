@@ -26,6 +26,8 @@ public class MeleeEnemyAI : MonoBehaviour
     public float detectionRange = 10;
     [Tooltip("The pushback force")]
     public float pushForce = 4f;
+    [Tooltip("Money gained from killing enemy")]
+    public int money = 1;
 
     //[HideInInspector]
     public int maxHealth;
@@ -39,6 +41,8 @@ public class MeleeEnemyAI : MonoBehaviour
     private bool bouncing = false;
     private Vector2 bounceDir;
 
+    private int moneyGain;
+
     // Start is called before the first frame update
     void Start()
     {  
@@ -46,7 +50,8 @@ public class MeleeEnemyAI : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
 
         maxHealth = startingHealth;
-        currentHealth = maxHealth;
+        currentHealth = (int)Mathf.Pow(maxHealth, 1 + GameManager.Loop / 10f);
+        moneyGain = money * (GameManager.Loop + 1);
     }
 
     // Update is called once per frame
@@ -92,6 +97,7 @@ public class MeleeEnemyAI : MonoBehaviour
             bounceDir = (enemyRB.position - (Vector2)collision.transform.parent.position).normalized * pushForce;
             if(currentHealth < 0)
             {
+                GameManager.AddMoney(moneyGain);
                 Destroy(gameObject);
             }
         }

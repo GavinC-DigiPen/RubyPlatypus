@@ -91,8 +91,8 @@ public class Health : MonoBehaviour
         {
             invincibilityFramesTimer -= invincibilityFramesTime;
 
-            playerAudio.clip = damageSound;
-            playerAudio.Play();
+            //playerAudio.clip = damageSound;
+            //playerAudio.Play();
         }
         else if(amount < 0)
         {
