@@ -157,7 +157,7 @@ MonoBehaviour:
   cooldown: 0.25
   swordOffTime: 0.1
   sword: {fileID: 7794757465833138681}
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 404d00ff1aed7354d9a716dbf9df6026, type: 3}
 --- !u!114 &7794757464718120562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   nextSceneName: Game
   startingHealth: 10
   invincibilityFramesTime: 0.5
-  damageSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: d32ee6684f9e54b4fbb375a63b2066eb, type: 3}
   regenTime: 1
   regenAmount: 1
   healing: 0

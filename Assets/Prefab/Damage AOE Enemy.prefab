@@ -156,7 +156,7 @@ MonoBehaviour:
   shootPrepTime: 3
   shootTime: 0.25
   projectilePrefab: {fileID: 9130726949102516520, guid: 08f7933130eeea043b021bce48d34c14, type: 3}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: a599e0afb94a3cf42aa1a16ca5975071, type: 3}
   prefabDistanceFromCenter: 0.6
   pushForce: 4
   maxHealth: 0
