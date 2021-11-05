@@ -525,6 +525,7 @@ MonoBehaviour:
   shootPrepTime: 3
   shootTime: 1
   projectilePrefab: {fileID: 6236650359394096434, guid: e8107cf924c70c944bb0356663fd9fb1, type: 3}
+  shootSound: {fileID: 0}
   prefabDistanceFromCenter: 0.75
   pushForce: 4
   maxHealth: 0
@@ -604,8 +605,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topLeft: {x: -3, y: 3}
   bottomRight: {x: 3, y: -3}
-  enemies: []
-  numEnemies: 
+  enemies:
+  - {fileID: 6236650359394096434, guid: e8107cf924c70c944bb0356663fd9fb1, type: 3}
+  - {fileID: 9130726949102516520, guid: 08f7933130eeea043b021bce48d34c14, type: 3}
+  numEnemies: 0200000001000000
 --- !u!4 &764813650
 Transform:
   m_ObjectHideFlags: 0
@@ -691,9 +694,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cea775b0c15ec748a9509f1bdbc47d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
+  startMaxSpeed: 5
   acceleration: 0.5
   slowDown: 0.01
+  maxSpeed: 5
 --- !u!114 &893943768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,6 +713,7 @@ MonoBehaviour:
   cooldown: 0.25
   swordOffTime: 0.1
   sword: {fileID: 47379693}
+  attackSound: {fileID: 0}
 --- !u!212 &893943769
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -790,6 +795,7 @@ MonoBehaviour:
   nextSceneName: 
   startingHealth: 10
   invincibilityFramesTime: 0.5
+  damageSound: {fileID: 0}
   regenTime: 1
   regenAmount: 1
   healing: 0

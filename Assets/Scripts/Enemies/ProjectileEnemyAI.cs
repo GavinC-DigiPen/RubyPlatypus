@@ -48,6 +48,7 @@ public class ProjectileEnemyAI : MonoBehaviour
     public int currentHealth;
 
     private Rigidbody2D enemyRB;
+    private AudioSource enemyAudio;
     private GameObject target;
     private Vector2 direction;
 
@@ -60,6 +61,7 @@ public class ProjectileEnemyAI : MonoBehaviour
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
+        enemyAudio = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player");
 
         maxHealth = startingHealth;
@@ -190,6 +192,9 @@ public class ProjectileEnemyAI : MonoBehaviour
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * projectileSpeed;
 
         projectile.transform.position = projectile.transform.position + (Vector3)direction * prefabDistanceFromCenter;
+
+        enemyAudio.clip = shootSound;
+        enemyAudio.Play();
 
         shooting = false;
         moving = true;

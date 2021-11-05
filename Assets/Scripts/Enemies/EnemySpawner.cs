@@ -15,9 +15,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Tooltip("The top left corner of the area")]
     public Vector2 topLeft;
+    [Tooltip("The bottom tight of the area")]
     public Vector2 bottomRight;
+    [Tooltip("The enemy prefabs")]
     public GameObject[] enemies;
+    [Tooltip("The number of enemies spawned for each prefab")]
     public int[] numEnemies;
 
     // Start is called before the first frame update

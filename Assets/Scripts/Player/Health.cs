@@ -23,6 +23,8 @@ public class Health : MonoBehaviour
     public int startingHealth = 10;
     [Tooltip("The amount of the time play will be invincible after getting hit")]
     public float invincibilityFramesTime = 0.5f;
+    [Tooltip("The sound played when hit")]
+    public AudioClip damageSound;
     [Tooltip("The amount of the time before regenerating health")]
     public float regenTime = 1f;
     [Tooltip("The amount of health you heal")]
@@ -37,12 +39,16 @@ public class Health : MonoBehaviour
 
     public static UnityEvent OnHealthChanged = new UnityEvent();
 
+    private AudioSource playerAudio;
+
     private float invincibilityFramesTimer = 0;
     private float regenTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
+
         maxHealth = (int)((GameManager.Loop + 1) * GameManager.HealthModifier) + startingHealth;
         currentHealth = maxHealth;
     }
@@ -83,6 +89,9 @@ public class Health : MonoBehaviour
         if (amount < 0 && invincibilityFramesTimer >= invincibilityFramesTime)
         {
             invincibilityFramesTimer -= invincibilityFramesTime;
+
+            playerAudio.clip = damageSound;
+            playerAudio.Play();
         }
         else if(amount < 0)
         {
