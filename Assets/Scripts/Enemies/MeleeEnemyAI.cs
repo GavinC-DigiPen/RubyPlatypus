@@ -77,6 +77,8 @@ public class MeleeEnemyAI : MonoBehaviour
             }
         }
 
+        float color = currentHealth / (float)maxHealth;
+        GetComponent<Renderer>().material.color = new Color(color, color, color, 1);
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -94,7 +96,15 @@ public class MeleeEnemyAI : MonoBehaviour
             bounceDir = (enemyRB.position - (Vector2)collision.transform.parent.position).normalized * pushForce;
             if(currentHealth < 0)
             {
-                GameManager.AddMoney(money * 2 * (GameManager.Loop + 1));
+                if (GetComponent<CreateLevelExitOnDestroy>())
+                {
+                    GetComponent<CreateLevelExitOnDestroy>().SpawnPortal();
+                    GameManager.AddMoney(money * 10 * (GameManager.Loop + 1));
+                }
+                else
+                {
+                    GameManager.AddMoney(money * 2 * (GameManager.Loop + 1));
+                }
                 Destroy(gameObject);
             }
         }

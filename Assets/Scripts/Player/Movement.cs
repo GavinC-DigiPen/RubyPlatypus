@@ -59,6 +59,9 @@ public class Movement : MonoBehaviour
         playerRB.velocity = newVelocity;
         playerRB.velocity = Vector2.ClampMagnitude(playerRB.velocity, maxSpeed);
 
+        if (direction.x == 0 && direction.y == 0)
+            return;
+
         float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         float newAngle = Mathf.Lerp(angle, transform.rotation.eulerAngles.y, 0.1f);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, -newAngle));

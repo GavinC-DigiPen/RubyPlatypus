@@ -113,6 +113,8 @@ public class ProjectileEnemyAI : MonoBehaviour
             }
         }
 
+        float color = currentHealth / (float)maxHealth;
+        GetComponent<Renderer>().material.color = new Color(color,color,color,1);
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;

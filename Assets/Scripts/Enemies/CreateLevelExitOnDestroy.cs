@@ -19,7 +19,7 @@ public class CreateLevelExitOnDestroy : MonoBehaviour
     public GameObject levelExit;
    
     // Create level exit on destroy
-    private void OnDestroy()
+    public void SpawnPortal()
     {
         Instantiate(levelExit, transform.position, Quaternion.identity);
     }
