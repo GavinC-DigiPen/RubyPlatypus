@@ -25,5 +25,7 @@ public class BossSpawner : MonoBehaviour
     {
         int index = Random.Range(0, spawnLocations.Length - 1);
         Instantiate(bossPrefab, spawnLocations[index], Quaternion.identity);
+
+        Destroy(this);
     }
 }

@@ -62,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
         sword.GetComponent<SpriteRenderer>().enabled = true;
         sword.GetComponent<CapsuleCollider2D>().enabled = true;
 
-        //swordAudio.clip = attackSound;
-        //swordAudio.Play();
+        swordAudio.clip = attackSound;
+        swordAudio.Play();
     }   
 }

@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	EnemySpawner.cs
+// File Name:	RoomSpawner.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
 // Project:	    RubyPlatypus 
 // Course:	    WANIC VGP2
@@ -13,7 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class RoomSpawner : MonoBehaviour
 {
     [Tooltip("The top left corner of the area")]
     public Vector2 topLeft;
@@ -23,6 +23,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemies;
     [Tooltip("The number of enemies spawned for each prefab")]
     public int[] numEnemies;
+    [Tooltip("The chest prefab")]
+    public GameObject chestPrefab;
+    [Tooltip("Percent chance of spawning a chest (0-100)")]
+    public float chestSpawnChance = 25;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,19 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.LogError("Length of enemies and numEnemies is different");
         }
+
+        if (chestPrefab)
+        {
+            float randomSpawnChance = Random.Range(0f, 100f);
+            if (randomSpawnChance < chestSpawnChance)
+            {
+                Vector2 spawnLocation;
+                spawnLocation.x = Random.Range(topLeft.x, bottomRight.x);
+                spawnLocation.y = Random.Range(bottomRight.y, topLeft.y);
+                Instantiate(chestPrefab, spawnLocation, Quaternion.identity);
+            }
+        }
+
         Destroy(this);   
     }
 }

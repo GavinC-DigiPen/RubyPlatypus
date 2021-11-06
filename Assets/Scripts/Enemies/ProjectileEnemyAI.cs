@@ -200,8 +200,8 @@ public class ProjectileEnemyAI : MonoBehaviour
 
         projectile.transform.position = projectile.transform.position + (Vector3)direction * prefabDistanceFromCenter;
 
-        //enemyAudio.clip = shootSound;
-        //enemyAudio.Play();
+        enemyAudio.clip = shootSound;
+        enemyAudio.Play();
 
         shooting = false;
         moving = true;
