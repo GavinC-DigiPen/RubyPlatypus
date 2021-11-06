@@ -59,8 +59,6 @@ public class ProjectileEnemyAI : MonoBehaviour
     private bool bouncing = false;
     private Vector2 bounceDir;
 
-    private int moneyGain;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -70,8 +68,6 @@ public class ProjectileEnemyAI : MonoBehaviour
 
         maxHealth = startingHealth;
         currentHealth = (int)Mathf.Pow(maxHealth, 1 + GameManager.Loop / 10f);
-
-        moneyGain = money * (GameManager.Loop + 1);
     }
 
     // Update is called once per frame
@@ -134,7 +130,7 @@ public class ProjectileEnemyAI : MonoBehaviour
             bounceDir = (enemyRB.position - (Vector2)collision.transform.parent.position).normalized * pushForce;
             if (currentHealth < 0)
             {
-                GameManager.AddMoney(moneyGain);
+                GameManager.AddMoney(money * 2 * (GameManager.Loop + 1));
                 Destroy(gameObject);
             }
         }

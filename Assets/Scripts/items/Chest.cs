@@ -5,7 +5,12 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     public GameObject[] items;
-    public int cost = -1;
+    public int cost;
+
+    private void Start()
+    {
+        cost *= 3 * (GameManager.Loop + 1);
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,7 +24,6 @@ public class Chest : MonoBehaviour
                 {
                     int rand = Random.Range(0,items.Length);
                     Instantiate(items[rand], transform.position,Quaternion.identity);
-                    Debug.Log(GameManager.money);
                     Destroy(gameObject);
                 }
             }

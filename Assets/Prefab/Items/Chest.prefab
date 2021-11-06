@@ -99,4 +99,4 @@ MonoBehaviour:
   - {fileID: 3085732387062088550, guid: 1ac68e88ce127c74f81eb540c94ab9e0, type: 3}
   - {fileID: 8522368325990593481, guid: bae97957f399e774aa031876b4cac7e0, type: 3}
   - {fileID: 7405885524987614167, guid: 8663ec60be1ee7446b54bb0ed7f5b839, type: 3}
-  cost: -1
+  cost: 2

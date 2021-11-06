@@ -15,6 +15,8 @@ using UnityEngine;
 
 public abstract class ItemBase : MonoBehaviour
 {
+    private float spawnTimer = 0;
+
     private ItemType type;
     public ItemType Type
     {
@@ -44,11 +46,19 @@ public abstract class ItemBase : MonoBehaviour
 
     private void Start()
     {
+        GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0);
+
         Init();
     }
 
     private void Update()
     {
+        if(spawnTimer < 1f)
+        {
+            spawnTimer += Time.deltaTime;
+            GetComponent<Renderer>().material.color = new Color(1, 1, 1, spawnTimer);
+            return;
+        }
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
         if(Vector3.Distance(transform.position,playerPos) <= 0.5f)

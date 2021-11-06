@@ -13,10 +13,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     private static int loop = 0;
+
+    public static UnityEvent OnMoneyChanged = new UnityEvent();
 
     public static List<ItemBase> items = new List<ItemBase>();
 
@@ -68,12 +71,18 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public static int money = 0;
+    private static int money = 0;
+
+    public static int Money
+    {
+        get => money;
+    }
 
     public static bool SpendMoney(int amount)
     {
         if (money >= amount)
         {
+            OnMoneyChanged.Invoke();
             money -= amount;
             return true;
         }
@@ -82,9 +91,9 @@ public class GameManager : MonoBehaviour
 
     public static void AddMoney(int amount)
     {
+        OnMoneyChanged.Invoke();
         money += amount;
     }
-
 
     public static void ResetStats()
     {
