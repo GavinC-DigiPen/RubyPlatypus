@@ -15,7 +15,9 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    [Tooltip("The prefabs of the items")]
     public GameObject[] items;
+    [Tooltip("The cost of the chest")]
     public int cost;
 
     private void Start()

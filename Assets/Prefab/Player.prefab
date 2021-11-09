@@ -177,7 +177,7 @@ MonoBehaviour:
   regenTime: 1
   regenAmount: 1
   healing: 0
-  maxHealth: 0
+  maxHealth: 10
   currentHealth: 10
 --- !u!82 &8883250713211307582
 AudioSource:

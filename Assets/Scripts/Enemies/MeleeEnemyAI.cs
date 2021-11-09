@@ -96,10 +96,14 @@ public class MeleeEnemyAI : MonoBehaviour
             bounceDir = (enemyRB.position - (Vector2)collision.transform.parent.position).normalized * pushForce;
             if(currentHealth < 0)
             {
-                if (GetComponent<CreateLevelExitOnDestroy>())
+                if (GetComponent<DropLevelExitOnDestroy>())
                 {
-                    GetComponent<CreateLevelExitOnDestroy>().SpawnPortal();
+                    GetComponent<DropLevelExitOnDestroy>().SpawnPortal();
                     GameManager.AddMoney(money * 10 * (GameManager.Loop + 1));
+                }
+                else if (GetComponent<DropItem>())
+                {
+                    GetComponent<DropItem>().SpawnItem();
                 }
                 else
                 {
