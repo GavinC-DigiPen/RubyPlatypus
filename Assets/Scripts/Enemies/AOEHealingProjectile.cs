@@ -24,7 +24,6 @@ public class AOEHealingProjectile : MonoBehaviour
     [Tooltip("The amount of damage the gameObject will do")]
     public int heal = 1;
 
-    [HideInInspector]
     public Vector2 targetLocation;
 
     private Rigidbody2D projectileRB;

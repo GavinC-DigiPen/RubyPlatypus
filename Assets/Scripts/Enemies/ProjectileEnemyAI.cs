@@ -67,7 +67,8 @@ public class ProjectileEnemyAI : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
 
         maxHealth = startingHealth;
-        currentHealth = (int)Mathf.Pow(maxHealth, 1 + GameManager.Loop / 10f);
+        maxHealth = (int)Mathf.Pow(maxHealth, 1 + GameManager.Loop / 10f);
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -160,15 +161,15 @@ public class ProjectileEnemyAI : MonoBehaviour
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             int index = -1;
-            float closesDistance = detectionRange;
+            float closestDistance = detectionRange;
             for (int i = 0; i < enemies.Length; i++)
             {
-                if ((enemies[i].transform.position - transform.position).magnitude < closesDistance)
+                if ((enemies[i].transform.position - transform.position).magnitude < closestDistance)
                 {
                     if (enemies[i].transform.position != transform.position)
                     {
                         index = i;
-                        closesDistance = enemies[i].transform.position.magnitude;
+                        closestDistance = (enemies[i].transform.position - transform.position).magnitude;
                     }
                 }
             }

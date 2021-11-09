@@ -48,7 +48,8 @@ public class MeleeEnemyAI : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
 
         maxHealth = startingHealth;
-        currentHealth = (int)Mathf.Pow(maxHealth, 1 + GameManager.Loop / 10f);
+        maxHealth = (int)Mathf.Pow(maxHealth, 1 + GameManager.Loop / 10f);
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
