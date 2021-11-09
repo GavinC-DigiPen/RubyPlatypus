@@ -956,6 +956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Game
+  ResetGameManager: 1
 --- !u!114 &1759784541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,6 +1104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: MainMenu
+  ResetGameManager: 0
 --- !u!114 &1962821830
 MonoBehaviour:
   m_ObjectHideFlags: 0
