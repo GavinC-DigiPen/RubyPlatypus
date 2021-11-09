@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b347f002058c2144ab6e3a71b796e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Game
+  nextSceneName: EndMenu
   startingHealth: 10
   invincibilityFramesTime: 0.5
   damageSound: {fileID: 8300000, guid: d32ee6684f9e54b4fbb375a63b2066eb, type: 3}
