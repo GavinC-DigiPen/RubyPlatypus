@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
     [Tooltip("The starting amount of health")]
     public int startingHealth = 10;
     [Tooltip("The amount of the time play will be invincible after getting hit")]
-    public float invincibilityFramesTime = 0.5f;
+    public float invincibilityFramesTime = 0.8f;
     [Tooltip("The sound played when hit")]
     public AudioClip damageSound;
     [Tooltip("The amount of the time before regenerating health")]
@@ -89,7 +89,10 @@ public class Health : MonoBehaviour
     {
         if (amount < 0 && invincibilityFramesTimer >= invincibilityFramesTime)
         {
-            invincibilityFramesTimer -= invincibilityFramesTime;
+            invincibilityFramesTimer = 0;
+
+            OnHealthChanged.Invoke();
+            currentHealth += amount;
 
             playerAudio.clip = damageSound;
             playerAudio.Play();
@@ -98,22 +101,19 @@ public class Health : MonoBehaviour
         {
             return;
         }
-        currentHealth += amount;
-        OnHealthChanged.Invoke();
+        else
+        {
+            OnHealthChanged.Invoke();
+            currentHealth += amount;
+        }
 
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
-        if (currentHealth < 0)
-        {
-            currentHealth = 0;
-        }
-
         if (currentHealth <= 0)
         {
             SceneManager.LoadScene(nextSceneName);
-            GameManager.ResetStats();
         }
     }
 }

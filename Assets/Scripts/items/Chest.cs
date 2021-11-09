@@ -31,7 +31,7 @@ public class Chest : MonoBehaviour
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         if(Vector3.Distance(playerPos,transform.position) < 2)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if(GameManager.SpendMoney(cost))
                 {
