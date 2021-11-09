@@ -18,10 +18,17 @@ public class ChangeSceneEvent : MonoBehaviour
 {
     [Tooltip("Name of the scene you want this script to load")]
     public string sceneName;
+    [Tooltip("Should it reset the game manager")]
+    public bool ResetGameManager = false;
 
     //Function to be called that loads new scene
     public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);
+
+        if (ResetGameManager)
+        {
+            GameManager.ResetStats();
+        }
     }
 }

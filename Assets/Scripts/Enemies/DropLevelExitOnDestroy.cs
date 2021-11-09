@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	CreateLevelExitOnDestroy.cs
+// File Name:	DropLevelExitOnDestroy.cs
 // Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
 // Project:	    RubyPlatypus
 // Course:	    WANIC VGP2
@@ -13,7 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateLevelExitOnDestroy : MonoBehaviour
+public class DropLevelExitOnDestroy : MonoBehaviour
 {
     [Tooltip("The prefab of the level exit")]
     public GameObject levelExit;
