@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
 
     public static void CalculateStats()
     {
-        ResetStats();
-        foreach(ItemBase i in items)
+        healthModifier = 0;
+        healModifier = 1;
+        damageModifier = 1; 
+        foreach (ItemBase i in items)
         {
             switch(i.Type)
             {
@@ -60,9 +62,11 @@ public class GameManager : MonoBehaviour
                     break;
                 case ItemType.DamageIncrease:
                     damageModifier += i.Value;
+                    FindObjectOfType<ItemText>().AddText(damageModifier.ToString() + "x");
                     break;
                 case ItemType.HealIncrease:
                     healModifier += i.Value;
+                    FindObjectOfType<ItemText>().AddText(healModifier.ToString() + "x");
                     break;
                 default:
                     break;

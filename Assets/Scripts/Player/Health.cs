@@ -80,6 +80,7 @@ public class Health : MonoBehaviour
     public void UpdateHealth()
     {
         maxHealth = (int)((GameManager.Loop + 1) * GameManager.HealthModifier) + startingHealth;
+        FindObjectOfType<ItemText>().AddText(maxHealth.ToString());
     }
 
     // Changes the current health by value
