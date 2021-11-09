@@ -82,8 +82,8 @@ public class GameManager : MonoBehaviour
     {
         if (money >= amount)
         {
-            OnMoneyChanged.Invoke();
             money -= amount;
+            OnMoneyChanged.Invoke();
             return true;
         }
         return false;
@@ -91,12 +91,13 @@ public class GameManager : MonoBehaviour
 
     public static void AddMoney(int amount)
     {
-        OnMoneyChanged.Invoke();
         money += amount;
+        OnMoneyChanged.Invoke();
     }
 
     public static void ResetStats()
     {
+        Loop = 0;
         healthModifier = 0;
         healModifier = 1;
         damageModifier = 1;

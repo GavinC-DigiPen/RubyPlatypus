@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMaxSpeed: 5
   acceleration: 0.5
-  slowDown: 0.01
+  slowDown: 0.05
   maxSpeed: 0
 --- !u!114 &7794757464718120563
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: EndMenu
   startingHealth: 10
-  invincibilityFramesTime: 0.5
+  invincibilityFramesTime: 0.8
   damageSound: {fileID: 8300000, guid: d32ee6684f9e54b4fbb375a63b2066eb, type: 3}
   regenTime: 1
   regenAmount: 1
