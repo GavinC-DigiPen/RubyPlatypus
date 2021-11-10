@@ -46,6 +46,17 @@ public class GameManager : MonoBehaviour
     {
         items.Add(item);
         CalculateStats();
+        switch (item.Type)
+        {  
+            case ItemType.DamageIncrease:
+                FindObjectOfType<ItemText>().AddText(damageModifier.ToString() + "x");
+                break;
+            case ItemType.HealIncrease:
+                FindObjectOfType<ItemText>().AddText(healModifier.ToString() + "x");
+                break;
+            default:
+                break;
+        }
     }
 
     public static void CalculateStats()
@@ -62,11 +73,9 @@ public class GameManager : MonoBehaviour
                     break;
                 case ItemType.DamageIncrease:
                     damageModifier += i.Value;
-                    FindObjectOfType<ItemText>().AddText(damageModifier.ToString() + "x");
                     break;
                 case ItemType.HealIncrease:
                     healModifier += i.Value;
-                    FindObjectOfType<ItemText>().AddText(healModifier.ToString() + "x");
                     break;
                 default:
                     break;

@@ -92,8 +92,8 @@ public class Health : MonoBehaviour
         {
             invincibilityFramesTimer = 0;
 
-            OnHealthChanged.Invoke();
             currentHealth += amount;
+            OnHealthChanged.Invoke();
 
             playerAudio.clip = damageSound;
             playerAudio.Play();
@@ -104,8 +104,8 @@ public class Health : MonoBehaviour
         }
         else
         {
-            OnHealthChanged.Invoke();
             currentHealth += amount;
+            OnHealthChanged.Invoke();
         }
 
         if (currentHealth > maxHealth)

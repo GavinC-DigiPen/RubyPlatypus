@@ -63,20 +63,20 @@ public abstract class ItemBase : MonoBehaviour
 
         if(Vector3.Distance(transform.position,playerPos) <= 0.5f)
         {
-            string s = "Item Collected: ";
+            string s = "";
             switch (type)
             {
                 case ItemType.MaxHealthIncrease:
                     s += "Max Health Increased\nFrom: ";
-                    s += GameManager.HealthModifier + "\nTo: ";
+                    s += FindObjectOfType<Health>().maxHealth + "\nTo: ";
                     break;
                 case ItemType.DamageIncrease:
                     s += "Damage Increased\nFrom:";
-                    s += GameManager.DamageModifier + "\nTo: ";
+                    s += GameManager.DamageModifier + "x\nTo: ";
                     break;
                 case ItemType.HealIncrease:
                     s += "Passive Heal Increased\nFrom:";
-                    s += GameManager.HealModifier + "\nTo: ";
+                    s += GameManager.HealModifier + "x\nTo: ";
                     break;
                 default:
                     break;
