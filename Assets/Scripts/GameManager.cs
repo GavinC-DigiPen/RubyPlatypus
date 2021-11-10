@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetStats()
     {
+        money = 0;
         Loop = 0;
         healthModifier = 0;
         healModifier = 1;

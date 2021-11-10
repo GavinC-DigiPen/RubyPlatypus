@@ -159,6 +159,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: a599e0afb94a3cf42aa1a16ca5975071, type: 3}
   prefabDistanceFromCenter: 0.6
   pushForce: 4
+  money: 1
   maxHealth: 0
   currentHealth: 0
 --- !u!114 &8825189848867167550
@@ -173,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9469dfe69f69e19459941f079d88ca8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
 --- !u!82 &5117776943585143437
 AudioSource:
   m_ObjectHideFlags: 0

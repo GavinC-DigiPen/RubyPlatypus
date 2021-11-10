@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9469dfe69f69e19459941f079d88ca8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
 --- !u!114 &9093993571780302910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +163,6 @@ MonoBehaviour:
   slowDownSpeed: 0.01
   detectionRange: 10
   pushForce: 4
+  money: 1
   maxHealth: 0
   currentHealth: 15

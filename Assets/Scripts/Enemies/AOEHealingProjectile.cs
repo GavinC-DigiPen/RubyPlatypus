@@ -82,6 +82,5 @@ public class AOEHealingProjectile : MonoBehaviour
             colliderAOE.enabled = false;
             healTimer = 0;
         }
-
     }
 }
