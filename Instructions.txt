@@ -1,6 +1,6 @@
 Ruby Playtpus
 
-In this game the player swaps between being able to attack and passively heal. Every 10 seconds the wall will change color indicating the change of modes. The goal is to explore and find the boss, a large melee enemy, and kill it which will summon a portal you can go through. Everytime you go through a portal the game will be reset with all the enemies getting harder.
+In this game the player swaps between being able to attack and passively heal. Every 5 seconds the wall will change color indicating the change of modes. The goal is to explore and find the boss, a large melee enemy, and kill it which will summon a portal you can go through. Everytime you go through a portal the game will be reset with all the enemies getting harder.
 
 Through out the game you will get money from killing enemies, this money can be used to open chests. The chests will drop items that increase your states, like health and attack damage. Items can also drop from killing mini-bosses which are a smaller boss.
 
