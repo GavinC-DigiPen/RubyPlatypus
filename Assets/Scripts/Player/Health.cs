@@ -88,19 +88,13 @@ public class Health : MonoBehaviour
     //  amount: the amount the current health will change
     public void ChangeHealth(int amount)
     {
-        if (amount < 0 && invincibilityFramesTimer >= invincibilityFramesTime)
+        if (amount < 0)
         {
-            invincibilityFramesTimer = 0;
-
             currentHealth += amount;
             OnHealthChanged.Invoke();
 
             playerAudio.clip = damageSound;
             playerAudio.Play();
-        }
-        else if(amount < 0)
-        {
-            return;
         }
         else
         {
